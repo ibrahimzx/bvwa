@@ -18,8 +18,8 @@ class BukuModel {
 
 	public function getBukuById($id)
 	{
-		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
-		$this->db->bind('id',$id);
+		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_buku=:id_buku');
+		$this->db->bind('id_buku', $id);
 		return $this->db->single();
 	}
 
@@ -40,9 +40,9 @@ class BukuModel {
 
 	public function updateDataBuku($data)
 	{
-		$query = "UPDATE buku SET judul=:judul, penerbit=:penerbit, pengarang=:pengarang, pengarang=:pengarang, tahun=:tahun, kategori_id=:kategori_id, harga=:harga WHERE id=:id";
+		$query = "UPDATE buku SET judul=:judul, penerbit=:penerbit, pengarang=:pengarang, pengarang=:pengarang, tahun=:tahun, kategori_id=:kategori_id, harga=:harga WHERE id_buku=:id_buku";
 		$this->db->query($query);
-		$this->db->bind('id',$data['id']);
+		$this->db->bind('id_buku',$data['id']);
 		$this->db->bind('judul', $data['judul']);
 		$this->db->bind('penerbit', $data['penerbit']);
 		$this->db->bind('pengarang', $data['pengarang']);
@@ -57,7 +57,7 @@ class BukuModel {
 	public function deleteBuku($id)
 	{
 		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id=:id');
-		$this->db->bind('id',$id);
+		$this->db->bind('id_buku',$id);
 		$this->db->execute();
 
 		return $this->db->rowCount();
@@ -65,8 +65,8 @@ class BukuModel {
 
 	public function cariBuku()
 	{
-		$key = $_POST['key'];
-		$this->db->query("SELECT * FROM " . $this->table . " WHERE judul LIKE :key");
+		$key = @$_POST['key'];
+		$this->db->query("SELECT buku.*, kategori.nama_kategori FROM " . $this->table . " JOIN kategori ON kategori.id = buku.kategori_id WHERE judul LIKE :key");
 		$this->db->bind('key',"%$key%");
 		return $this->db->resultSet();
 	}

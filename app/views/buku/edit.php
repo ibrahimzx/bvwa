@@ -20,7 +20,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" action="<?= base_url; ?>/buku/updateBuku" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="id" value="<?= $data['buku']['id']; ?>">
+                <input type="hidden" name="id" value="<?= $data['buku']['id_buku']; ?>">
                 <div class="card-body">
                   <div class="form-group">
                     <label >Judul</label>

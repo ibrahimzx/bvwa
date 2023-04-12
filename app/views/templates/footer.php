@@ -1,9 +1,6 @@
 
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 1.0.0
-    </div>
-    <strong>Copyright &copy;2019 Bukita All rights
+    <strong>Copyright &copy;<?= date('Y'); ?> xpl0dec All rights
     reserved.
   </footer>
 
@@ -18,5 +15,13 @@
 <script src="<?= base_url; ?>/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url; ?>/dist/js/demo.js"></script>
+<script>
+  
+  $('#config').on('click', function() {
+    var div = $('button');
+    
+  });
+
+</script>
 </body>
 </html>

@@ -16,8 +16,9 @@ class User extends Controller {
 		$this->view('templates/header', $data);
 		$this->view('templates/sidebar', $data);
 		$this->view('user/index', $data);
-		$this->view('templates/footer');
+		// $this->view('templates/footer');
 	}
+	
 	public function cari()
 	{
 		$data['title'] = 'Data User';
@@ -73,7 +74,7 @@ class User extends Controller {
 		
 	}
 
-	public function updateUser(){	
+	public function updateUser(){
 		if(empty($_POST['password'])) {
 			if( $this->model('UserModel')->updateDataUser($_POST) > 0 ) {
 			Flasher::setMessage('Berhasil','diupdate','success');

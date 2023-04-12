@@ -24,19 +24,19 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"><?= $data['title'] ?></h3> <div class="btn-group float-right"><a href="<?= base_url; ?>/buku/tambah" class="btn float-right btn-xs btn btn-primary">Tambah Buku</a><a href="<?= base_url; ?>/buku/laporan" class="btn float-right btn-xs btn btn-info">Laporan Buku</a><a href="<?= base_url; ?>/buku/lihatlaporan" class="btn float-right btn-xs btn btn-warning">Lihat Laporan Buku</a></div>
+          <h3 class="card-title"><?= $data['title'] ?></h3> <div class="btn-group float-right"><a href="<?= base_url; ?>/buku/laporan" class="btn float-right btn-xs btn btn-info">Laporan Buku</a><a href="<?= base_url; ?>/buku/lihatlaporan" class="btn float-right btn-xs btn btn-warning">Lihat Laporan Buku</a></div>
         </div>
         <div class="card-body">
         
       <form action="<?= base_url; ?>/buku/cari" method="post">
- <div class="row mb-3">
-    <div class="col-lg-6">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="" name="key" >
-    <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="submit">Cari Data</button>
-          <a class="btn btn-outline-danger" href="<?= base_url; ?>/buku" >Reset</a>
-    </div>
+       <div class="row mb-3">
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="" name="key" >
+          <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Cari Data</button>
+                <a class="btn btn-outline-danger" href="<?= base_url; ?>/buku" >Reset</a>
+          </div>
   </div>
 
   </div>
@@ -56,7 +56,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <?php $no=1; ?> 
+                  <?php $no=1; ?>
                     <?php foreach ($data['buku'] as $row) :?>
                     <tr>
                       <td><?= $no; ?></td>
@@ -65,9 +65,22 @@
                       <td><?= $row['pengarang'];?></td>
                       <td><?= $row['tahun'];?></td>
                       <td><div class="badge badge-warning"><?= $row['nama_kategori'];?></div></td>
-                      <td><?= $row['harga'];?></td>
+                      <td><?= Flasher::rupiah($row['harga']);?></td>
                       <td>
-                        <a href="<?= base_url; ?>/buku/edit/<?= $row['id'] ?>" class="badge badge-info">Edit</a> <a href="<?= base_url; ?>/buku/hapus/<?= $row['id'] ?>" class="badge badge-danger" onclick="return confirm('Hapus data?');">Hapus</a>
+                      
+                        <?php if(in_array($row['id_buku'], $data['pembelian'])): ?>
+                          <a href="#" disabled="disabled" class="badge badge-danger">Terbeli</a>
+                        <?php else: ?>
+                           <form method="POST" action="<?= base_url ?>/cart/beliBuku/<?= $row['id_buku']; ?>">
+                            <input type="hidden" name="harga" value="<?= $row['harga'] ?>">
+                            <button type="submit" name="beli" class="badge badge-success" onclick="if(!confirm('Yakin membeli buku ini??')){ return false }">Beli</button>
+                          </form>
+                            <?php if(!in_array($row['id_buku'], $data['cart'])): ?>
+                              <a href="<?= base_url; ?>/cart/addBuku/<?= $row['id_buku'] ?>" class="badge badge-warning">Add to Cart</a>
+                            <?php else: ?>
+                              <a href="#" class="badge badge-success">Ditambahkan ke cart</a>
+                            <?php endif; ?>
+                        <?php endif; ?>
                       </td>
                     </tr>
                     <?php $no++; endforeach; ?>

@@ -6,15 +6,31 @@ class Buku extends Controller {
 	{	
 		if($_SESSION['session_login'] != 'sudah_login') {
 			Flasher::setMessage('Login','Tidak ditemukan.','danger');
-			header('location: '. base_url . '/login');
-			exit;
+			header('location: '. base_url . '/Home');
 		}
 	}
 	
 	public function index()
 	{
 		$data['title'] = 'Data Buku';
+
+		$id_user = $this->model('UserModel')->getUsername($_SESSION['username'])['id_user'];
+		$getIdBuku = $this->model('CartModel')->cek($id_user);
+		$ambilDataCart = $this->model('CartModel')->dataCart($id_user);
+
+		$dataCart = [];
+		foreach($ambilDataCart as $cart) {
+			array_push($dataCart, $cart['id_buku']);
+		}
+
+		$tampung = [];
+		foreach($getIdBuku as $idBuku) {
+			array_push($tampung, $idBuku['id_buku']);
+		}
+
+		$data['pembelian'] = $tampung;
 		$data['buku'] = $this->model('BukuModel')->getAllBuku();
+		$data['cart'] = $dataCart;
 		$this->view('templates/header', $data);
 		$this->view('templates/sidebar', $data);
 		$this->view('buku/index', $data);
@@ -67,7 +83,7 @@ class Buku extends Controller {
 	{
 		$data['title'] = 'Data Buku';
 		$data['buku'] = $this->model('BukuModel')->cariBuku();
-		$data['key'] = $_POST['key'];
+		$data['key'] = isset($_POST['key']);
 		$this->view('templates/header', $data);
 		$this->view('templates/sidebar', $data);
 		$this->view('buku/index', $data);
@@ -108,6 +124,7 @@ class Buku extends Controller {
 	}
 
 	public function updateBuku(){	
+
 		if( $this->model('BukuModel')->updateDataBuku($_POST) > 0 ) {
 			Flasher::setMessage('Berhasil','diupdate','success');
 			header('location: '. base_url . '/buku');

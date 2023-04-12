@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?= base_url; ?>/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="<?= base_url; ?>/dist/css/style.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -28,8 +29,13 @@
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?= base_url; ?>/logout" class="nav-link">Logout</a>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?= $_SESSION['nama']; ?>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<?= base_url; ?>/home/profile">profile</a>
+          <a class="dropdown-item" href="<?= base_url; ?>/logout">Logout</a>
       </li>
     </ul>
   </nav>

@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Halaman User</h1>
+            <h1>Pelanggan kami</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -24,7 +24,7 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"><?= $data['title'] ?></h3> <a href="<?= base_url; ?>/user/tambah" class="btn float-right btn-xs btn btn-primary">Tambah User</a>
+          <h3 class="card-title">Data pelanggan kami</h3> 
         </div>
         <div class="card-body">
         
@@ -46,23 +46,11 @@
                   <thead>                  
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Nama</th>
                       <th>Username</th>
-                      <th style="width: 150px">Action</th>
                     </tr>
                   </thead>
-                  <tbody>
-                  <?php $no=1; ?> 
-                    <?php foreach ($data['user'] as $row) :?>
-                    <tr>
-                      <td><?= $no; ?></td>
-                      <td><?= $row['nama'];?></td>
-                      <td><?= $row['username'];?></td>
-                      <td>
-                        <a href="<?= base_url; ?>/user/edit/<?= $row['id'] ?>" class="badge badge-info ">Edit</a> <a href="<?= base_url; ?>/user/hapus/<?= $row['id'] ?>" class="badge badge-danger" onclick="return confirm('Hapus data?');">Hapus</a>
-                      </td>
-                    </tr>
-                    <?php $no++; endforeach; ?>
+                  <tbody id="tbody">
+                    <!-- ambil data dari rest api -->
                   </tbody>
                 </table>
         </div>
@@ -78,4 +66,44 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+  <footer class="main-footer">
+    <strong>Copyright &copy;2023 Bhineka Tech All rights
+    reserved.
+  </footer>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="<?= base_url; ?>/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= base_url; ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url; ?>/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?= base_url; ?>/dist/js/demo.js"></script>
+<script>
+
+
+    var tbody = $('#tbody');
+    $.ajax ({
+      url: 'http://localhost/bug-hunter/public/api/parseUser',
+      method: 'GET',
+      dataType: 'json',
+      headers: {
+        'Authorization': 'YmgxbjNrNC10M2NoLWFwaQ=='
+      },
+      success: function(data) {
+        $.each(data['data'], function(index, item) {
+          tbody.append(`<tr><td>${index + 1}</td><td>${item.username}</td></tr>`);
+        });
+      }
+    });
+
+
+</script>
+</body>
+</html>
 

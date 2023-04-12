@@ -5,13 +5,12 @@ class About extends Controller {
 	{	
 		if($_SESSION['session_login'] != 'sudah_login') {
 			Flasher::setMessage('Login','Tidak ditemukan.','danger');
-			header('location: '. base_url . '/login');
-			exit;
+			header('location: '. base_url . '/Home');
 		}
 	} 
 	public function index()
 	{
-		$data['title'] = 'Halaman AboutMe';
+		$data['title'] = 'AboutMe';
 
 		$this->view('templates/header', $data);
 		$this->view('templates/sidebar', $data);

@@ -21,7 +21,7 @@
               <!-- form start -->
               <form role="form" action="<?= base_url; ?>/user/updateUser" method="POST" enctype="multipart/form-data">
 
-                    <input type="hidden" name="id" value="<?= $data['user']['id']; ?>">
+                    <input type="hidden" name="id" value="<?= $data['user']['id_user']; ?>">
                 <div class="card-body">
                   <div class="form-group">
                     <label >Nama</label>
