@@ -10,7 +10,7 @@ Beberapa bug atau kerentanan yang terdapat pada BVWA diantaranya:\
 -Information Disclosure\
 -Arbitrary File Download\
 -Broken Authentication\
--Cross Site Scripting(XSS)\
+-Cross Site Scripting(XSS)
 
 
 Struktur pada source code dan tech stack pada BVWA:\
@@ -18,6 +18,6 @@ Struktur pada source code dan tech stack pada BVWA:\
 -CRUD\
 -MVC(Model View Controller)\
 -PDO(PHP Data Object)\
--MySQL\
+-MySQL
   
  
