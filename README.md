@@ -3,7 +3,7 @@ BVWA(Bhineka Tech Vulnerable Web Apps) merupakan web application yang dirancang 
 BVWA Ditujukkan untuk para Pentester, Bug Hunter maupun Security Researcher yang digunakan untuk mempelajari suatu vulnerability pada web aplikasi.
 
 Beberapa bug atau kerentanan yang terdapat pada BVWA diantaranya:
--SSRF(Server side request forgery)<br>
+-SSRF(Server side request forgery)<br/>
 -Execution After Redirect
 -SQL Injection 
 -IDOR(Insecure Direct Object Reference)
