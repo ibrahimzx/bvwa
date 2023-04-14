@@ -21,10 +21,11 @@ BVWA Ditujukkan untuk para Pentester, Bug Hunter maupun Security Researcher yang
 -MySQL
 
 **Installation**
-> Download atau git clone repository: https://github.com/ibrahimzx/bvwa\
-> Setup webserver jika menggunakan windows /xampp/htdocs dan jika menggunakan linux /var/www/html\
-> Import bvwa.sql pada phpmyadmin atau software tools dbms lainnya\
-> Edit dan sesuaikan konfigurasi database pada /bvwa/app/config/config.php\
-> Installation Selesai 
+> 1. Download atau git clone repository: https://github.com/ibrahimzx/bvwa \
+> 2. Setup webserver beserta database pada local komputer\
+> 3. Pindahkan folder bvwa pada root directory webserver contohnya jika di windows /xampp/htdocs/ \
+> 3. Import bvwa.sql pada phpmyadmin atau software tools dbms lainnya\
+> 4. Edit dan sesuaikan konfigurasi database pada /bvwa/app/config/config.php\
+> 5. Installation Selesai dan bisa diakses pada http://localhost/bvwa/
 
 _Happy Hacking :)_
