@@ -120,7 +120,7 @@
       $('#formLogin').validate({
         rules : {
           username: {
-            required: ,
+            required: false,
             minlength: 6
           },
           password: {

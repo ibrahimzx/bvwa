@@ -87,6 +87,19 @@
 <script>
 
 
+    String.prototype.escape = function() {
+
+      var replaceXss = {
+        '&': '&amp;',
+        '>': '&gt;',
+        '<': '&lt;'
+      }
+
+      return this.replace(/[&<>]/g, function(tag) {
+        return replaceXss[tag] || tag;
+      });
+    }
+
     var tbody = $('#tbody');
     $.ajax ({
       url: 'http://localhost/bug-hunter/public/api/parseUser',
@@ -97,7 +110,7 @@
       },
       success: function(data) {
         $.each(data['data'], function(index, item) {
-          tbody.append(`<tr><td>${index + 1}</td><td>${item.username}</td></tr>`);
+          tbody.append(`<tr><td>${index + 1}</td><td>${item.username.escape()}</td></tr>`);
         });
       }
     });
